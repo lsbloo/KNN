@@ -20,23 +20,26 @@ public class App
 	
     public static void main( String[] args ) throws IOException
     {
+    	
+    	System.err.println("Resultado KNN - \n ");
     	CSVR n = new CSVR();
+    	Classification classix = new Classification();
     	List<Flor> mec = n.getInformationsFlor("C:\\Users\\osvaldoairon\\Downloads\\knn-pratica\\aprendizagemdemaquina\\treinamento.csv");
     	List<Validator> mec2 = n.getInformationsValidator("C:\\Users\\osvaldoairon\\Downloads\\knn-pratica\\aprendizagemdemaquina\\teste.csv");
     	KNN knn = new KNN(mec.size(),mec2.size());
-    	Distance dir = knn.getDistance(mec2.get(0), mec);
-    	List<Flor> labels = dir.getList_flor();
-    	
-    	Collections.sort(labels);
-    	
-    	
-    	for(int i = 0 ; i < K ; i++) {
-    		System.err.println(labels.get(i).getLabel() +  " : "  +  labels.get(i).getDistance());
+    	for(int i = 0 ; i < mec2.size() ; i ++) {
+    		Distance dir = knn.getDistance(mec2.get(i), mec);
+        	List<Flor> labels = dir.getList_flor();
+        	List<Double> classi = new ArrayList<Double>();
+        	Collections.sort(labels);
+        	for(int j = 0 ; j < K ; j ++) {
+        		classi.add(labels.get(j).getLabel());
+        		
+        	}
+        	System.err.println(classix.getResult(classi));
     	}
-    
     	
-    
-    
+    	
     }
     
     

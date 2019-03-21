@@ -54,22 +54,24 @@ public class KNN {
 	public Distance getDistance(Validator v , List<Flor> trainer) {
 		Double dist=0.0;
 		HashMap<Flor, Double> distances_associate = new HashMap<Flor,Double>();
-		Double resultx = (v.getSepallength() - v.getSepalwidth() - v.getPetalwidth() - v.getPetallength());
-		Double result = Math.pow(resultx, 2);
+		Double[] validators = {v.getSepallength(), v.getSepalwidth(),v.getPetalwidth(),v.getPetallength()};
+	
 		int cont=0;
+		Double gg = 0.0;
 		List<Flor> flores = new ArrayList<Flor>();
 		for(Flor f : trainer) {
 			cont++;
-			Double result_fx = (f.getSepallength() - f.getSepalwidth()- f.getPetalwidth() - f.getPetallength() );
-			Double result_f = Math.pow(result_fx, 2);
-			Double exit = result + result_f;
-			dist = Math.sqrt(exit);
+			Double[] train  = {f.getSepallength(), f.getSepalwidth() , f.getPetalwidth() , f.getPetallength()};
+			Double param1 = Math.pow((validators[0] - train[0]) , 2);
+			Double param2 = Math.pow((validators[1] - train[1]) , 2);
+			Double param3 = Math.pow((validators[2] - train[2]) , 2);
+			Double param4 = Math.pow((validators[3] - train[3]), 2);
+			gg = param1+param2+param3+param4;
+			dist = Math.sqrt((gg));
 			distances_associate.put(f, dist);
 			fws[cont] = f;
 			distancesxs[cont]=dist;
 			list_dist.add(dist);
-			
-			
 			f.setDistance(dist);
 			flores.add(f);
 		}
@@ -77,9 +79,7 @@ public class KNN {
 		this.distance.setFlor(fws);
 		this.distance.setDistancesx(distancesxs);
 		this.distance.setValidator(v);
-		
-		
-		System.err.println("distance execute!");
+	
 		
 		return this.distance;
 	}

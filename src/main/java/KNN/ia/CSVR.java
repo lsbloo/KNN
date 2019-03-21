@@ -30,7 +30,7 @@ public class CSVR {
 		
 		String[] leitorLinhas;
 		if(leitor!=null) {
-			System.err.println("leitor ok");
+			
 			
 		Double sepallength=0.0; //0
 		Double sepalwidth=0.0; // 1
@@ -74,7 +74,7 @@ public class CSVR {
 		
 		String[] leitorLinhas;
 		if(leitor!=null) {
-			System.err.println("leitor ok");
+			
 			
 		Double sepallength=0.0; //0
 		Double sepalwidth=0.0; // 1

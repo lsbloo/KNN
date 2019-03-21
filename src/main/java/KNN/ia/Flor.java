@@ -76,6 +76,6 @@ public class Flor implements Comparable<Flor>{
 	public int compareTo(Flor o) {
 		// TODO Auto-generated method stub
 	
-		return this.getLabel().compareTo(o.getLabel());
+		return this.getDistance() < o.getDistance() ? -1 : this.getDistance() == o.getDistance() ? 0 : 1;
 	}
 }
